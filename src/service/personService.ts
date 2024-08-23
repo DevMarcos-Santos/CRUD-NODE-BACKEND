@@ -3,7 +3,7 @@ import { PersonRepository } from 'src/repository/personRepository';
 
 @Injectable()
 export class PersonService {
-  personRepository = new PersonRepository();
+  constructor(private personRepository: PersonRepository) {}
 
   async create(name: string, email: string) {
     try {

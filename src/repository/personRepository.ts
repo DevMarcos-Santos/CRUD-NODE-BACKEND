@@ -4,8 +4,10 @@ import { Validations } from 'src/service/validations';
 
 @Injectable()
 export class PersonRepository {
-  prismaService = new PrismaService();
-  validations = new Validations();
+  constructor(
+    private validations: Validations,
+    private prismaService: PrismaService,
+  ) {}
 
   createPerson(name: string, email: string) {
     try {
