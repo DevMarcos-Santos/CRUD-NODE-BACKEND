@@ -5,7 +5,7 @@ import { Person } from 'src/types/types';
 
 @Controller()
 export class PersonController {
-  personService = new PersonService();
+  constructor(private personService: PersonService) {}
 
   @Post('create')
   async create(@Body() body: Person, @Res() res: Response) {
