@@ -24,6 +24,15 @@ export class PersonService {
     }
   }
 
+  async readById(id: string) {
+    try {
+      const result = await this.personRepository.readById(id);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async update(id: string, person: Person) {
     try {
       const result = await this.personRepository.updatePerson(id, person);

@@ -11,6 +11,7 @@ import {
 import { PersonService } from 'src/service/personService';
 import { Response } from 'express';
 import { Person } from 'src/types/types';
+import { string } from 'zod';
 
 @Controller('persons')
 export class PersonController {
@@ -33,6 +34,16 @@ export class PersonController {
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).send(error);
+    }
+  }
+
+  @Get(':id')
+  async readById(@Param('id') id: string, @Res() res: Response) {
+    try {
+      const result = await this.personService.readById(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json(error);
     }
   }
 
