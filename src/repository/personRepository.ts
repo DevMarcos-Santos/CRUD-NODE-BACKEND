@@ -53,6 +53,20 @@ export class PersonRepository {
     }
   }
 
+  async readById(id: string) {
+    const converted = parseInt(id);
+    try {
+      const result = await this.prismaService.person.findMany({
+        where: {
+          id: converted,
+        },
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async updatePerson(id: string, person: Person) {
     try {
       const resp = this.validations.createValidation(person.name, person.email);
